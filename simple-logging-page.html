@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity: #001; Simple Logging Page</title>
+    <link rel="stylesheet" type="text/css" href="./simple-logging-page-global.css" />
+    <link rel="stylesheet" type="text/css" href="./sign-in-page.css" />
+</head>
+<body>
+    <div class="Scene">
+        <header>
+            <!-- TODO-HERE... -->
+        </header>
+        <main>
+            <section id="SIGNING_FORM">
+                <div id="BTN_HEADER">
+                    <button class="BtnRegister">Register</button>
+                    <button class="BtnSignIn">Sign-in</button>
+                </div>
+                <form id="SIGN_IN_FORM">
+                    <input 
+                        type="text" 
+                        name="txtUserName" 
+                        id="TXT_USER_NAME" 
+                        placeholder="User Name"
+                    />
+                    <label
+                        for="TXT_USER_NAME"
+                        id="LBL_USER_NAME"
+                    >
+                    User Name
+                    </label>
+                    <input 
+                        type="password" 
+                        name="txtPassword" 
+                        id="TXT_PASSWORD" 
+                        placeholder="Password"
+                    />
+                    <label
+                        for="TXT_PASSWORD"
+                        id="LBL_PASSWORD"
+                    >
+                    Password
+                    </label>
+                    <div class="ChkboxImNotARobot">
+                        <input 
+                            type="checkbox"
+                            name="chkboxImNotARobot"
+                            id="CHKBOX_IM_NOT_A_ROBOT"
+                        />
+                        <label
+                            for="CHKBOX_IM_NOT_A_ROBOT"
+                            id="LBL_IM_NOT_A_ROBOT"
+                        >
+                        I'm not a Robot!
+                        </label>
+                    </div>
+                    <div id="BTN_FOOTER">
+                        <button 
+                            type="submit" 
+                            class="BtnSignIn"
+                        >
+                        Sign-in
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="BtnForgetPassword"
+                        >
+                        Forget password
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <!-- TODO-HERE... -->
+        </footer>
+    </div>
+</body>
+</html>
