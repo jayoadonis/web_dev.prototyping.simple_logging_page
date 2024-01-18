@@ -13,20 +13,15 @@ class Error {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const handleFormSubmit = ( form, endpoint ) => {
+    const handleForm = ( form, endpoint ) => {
         const btnForgetPassword = form.querySelector( '#SIGN_IN_FORM .BtnForgetPassword' );
-        const signingFormElements = Array.from( form.querySelectorAll('input') );
-        const signingFormDatas = Object.fromEntries(
-            signingFormElements.map(
-                el => [el.name, el.name === 'chkboxImNotARobot' ? el.checked : el.value]
-            )
-        );
 
         //REM: TODO-HERE...
         btnForgetPassword.addEventListener( 'click', function( event ) {
             //REM: TODO-HERE...
             event.preventDefault();
-            alert( "Going to retrieve account via a step by step process/inquiry later on." );
+            console.log( "click: btnForgetPassword" );
+            alert( "TEST ALERT: " + "Going to retrieve account via a step by step process/inquiry later on." );
             window.location.reload();
             // event.stopPropagation();
         } );
@@ -35,13 +30,19 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
 
             var inputTxtUserName;
+            const signingFormElements = Array.from( form.querySelectorAll('input') );
+            const signingFormDatas = Object.fromEntries(
+                signingFormElements.map(
+                    el => [el.name, el.name === 'chkboxImNotARobot' ? el.checked : el.value]
+                )
+            );
 
             signingFormElements.forEach(element => {
                 if (element.name === 'txtUserName')
                     inputTxtUserName = element;
             });
-
-            console.log( endpoint );
+            
+            console.log( `submit: ${endpoint}` );
             console.log( signingFormElements );
             console.log( signingFormDatas );
             console.log( inputTxtUserName );
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             if( data.isSuccess ) {
                                 //REM: TODO-HERE...
                                 console.log( "Successfully log-in!" )
-                                alert( data.message );
+                                alert( "TEST ALERT: " +  data.message + "; ErrorCode = " + data.errorCode );
                             } else {
 
                                 switch( data.errorCode ) {
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         console.log( "catch sign-in invalid: something went wrong" )
                                 }
                                 
-                                alert( data.message, ", ", data.errorCode );
+                                alert( "TEST ALERT: " + data.message + "; ErrorCode = " + data.errorCode );
                                 // inputTxtUserName.focus();
                             }
                         
@@ -123,9 +124,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const signUpForm = document.querySelector("#SIGN_UP_FORM");
 
     if ( signInForm )
-        handleFormSubmit( signInForm, Form.SIGN_IN );
+        handleForm( signInForm, Form.SIGN_IN );
 
     if ( signUpForm )
-        handleFormSubmit( signUpForm, Form.SIGN_UP );
+        handleForm( signUpForm, Form.SIGN_UP );
 
+    console.log( "DOMContentLoaded..." );
 });
+
+
+console.log( "init: simple-logging-page.js" );
