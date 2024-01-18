@@ -7,3 +7,26 @@ main #SIGN_IN_FORM {
     padding-top: 5%;
     align-items: center;
 }
+
+#TXT_USER_NAME,
+#TXT_PASSWORD {
+    width: 250px;
+    height: 25px;
+    padding: 5px;
+    margin-top: 15px;
+}
+
+#LBL_USER_NAME,
+#LBL_PASSWORD {
+    user-select: none;
+}
+
+main #BTN_FOOTER .BtnSignIn {
+    background: var(--light-blue);
+    color: var(--white);
+}
+
+main #BTN_FOOTER .BtnForgetPassword {
+    background: var(--light-gray);
+    color: var(--black);
+}

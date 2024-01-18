@@ -1,9 +1,11 @@
 :root {
     --blue: #0000FF;
+    --light-blue: #047bff;
     --white: #FFFFFF;
     --gray: #c0c0c0;
     --light-gray: #e5e5e5;
     --black: #000000;
+    --dark-gray: #4d4d4d;
     --font-size-001: 8px;
     --font-size-002: 16px;
     --font-size-004: 32px;
@@ -33,12 +35,13 @@ main #SIGNING_FORM {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
-    margin-top: 5%;
+    margin-top: 10%;
     padding-bottom: 25px;
     align-items: center;
-    width: 500px;
+    width: 400px;
     background: white;
     border: 1px solid var(--black);
+    box-shadow: 0 0 5px 1px var(--dark-gray);
 }
 
 main #BTN_HEADER {
@@ -47,8 +50,28 @@ main #BTN_HEADER {
     column-gap: 0px;
 }
 
+button,
+#CHKBOX_IM_NOT_A_ROBOT,
+#LBL_IM_NOT_A_ROBOT,
+#LBL_USER_NAME,
+#LBL_PASSWORD {
+    cursor: pointer;
+}
+
+main #SIGNING_FORM button:hover {
+    background-color: var(--light-blue);
+    color: white;
+}
+
 main #BTN_HEADER button {
     background: var(--light-gray);
+    width: 200px;
+    height: 50px;
+}
+
+main .ChkboxImNotARobot {
+  user-select: none;
+  padding-top: 15px;
 }
 
 main #BTN_FOOTER {
@@ -57,4 +80,10 @@ main #BTN_FOOTER {
     row-gap: 10px;
     padding-top: 5%;
     align-items: center;
+    width: 150px;
+}
+
+main #BTN_FOOTER button {
+    width: 150px;
+    height: 50px;
 }
