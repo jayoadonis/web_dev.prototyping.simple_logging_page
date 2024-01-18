@@ -61,6 +61,7 @@ button,
 main #SIGNING_FORM button:hover {
     background-color: var(--light-blue);
     color: white;
+    box-shadow: 0 0 5px 1px var(--dark-gray);
 }
 
 main #BTN_HEADER button {
