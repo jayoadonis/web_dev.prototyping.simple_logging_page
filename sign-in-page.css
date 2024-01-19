@@ -4,8 +4,9 @@ main #SIGN_IN_FORM {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    padding-top: 5%;
+    padding: 5%;
     align-items: center;
+    width: 100%;
 }
 
 #TXT_USER_NAME,
@@ -29,4 +30,8 @@ main #BTN_FOOTER .BtnSignIn {
 main #BTN_FOOTER .BtnForgetPassword {
     background: var(--light-gray);
     color: var(--black);
+}
+
+main #BTN_HEADER .BtnSignIn {
+    cursor: not-allowed;
 }

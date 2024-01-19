@@ -4,6 +4,7 @@ class Form {
 }
 
 class Error {
+    static FATAL = -1;
     static NONE = 0;
     static USER_NAME = 2;
     static PASSWORD = 4;
@@ -31,9 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             var inputTxtUserName;
             const signingFormElements = Array.from( form.querySelectorAll('input') );
+
+            //REM: e.q: [ txtUserName: '<str>', txtPassword: '<str>',  chkboxImNotARobot: <bool> ]
             const signingFormDatas = Object.fromEntries(
                 signingFormElements.map(
-                    el => [el.name, el.name === 'chkboxImNotARobot' ? el.checked : el.value]
+                    el => [el.name, ( el.name === 'chkboxImNotARobot' )? el.checked : el.value]
                 )
             );
 
@@ -55,18 +58,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify( signingFormDatas ) //REM: e.q: { userName: <value>, password: <value> }
+                body: JSON.stringify( signingFormDatas ) //REM: e.q: { txtUserName: '<str>', txtPassword: '<str>',  chkboxImNotARobot: <bool> }
             })
                 .then(response => response.json())
                 .then(data => {
                     // const isAuthenticateEndpoint = ( endpoint === Form.SIGN_IN );
-                    
+
+                    //REM: Check this out for security...
+                    // data.isSuccess = true; //REM: note we explicity modified it at client-side/front-end impl.
+
                     switch( endpoint ) {
                         case Form.SIGN_IN:
                             if( data.isSuccess ) {
                                 //REM: TODO-HERE...
                                 console.log( "Successfully log-in!" )
                                 alert( "TEST ALERT: " +  data.message + "; ErrorCode = " + data.errorCode );
+                                window.location.reload();
                             } else {
 
                                 switch( data.errorCode ) {
@@ -81,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         break;
                                     default:
                                         //REM: TODO-HERE...
-                                        console.log( "catch sign-in invalid: something went wrong" )
+                                        console.log( "catch sign-in invalid: something went wrong: " + data.message )
                                 }
                                 
                                 alert( "TEST ALERT: " + data.message + "; ErrorCode = " + data.errorCode );
@@ -108,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         break;
                                     default:
                                         //REM: TODO-HERE...
+                                        console.log( "catch sign-up invalid: something went wrong: " + data.message )
                                 }
                             }
                             break;
@@ -115,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 })
                 .catch(error => {
-                    console.error("::: Error:", error.message);
+                    console.error( "::: Error: " + error.message );
                 });
         });
     };
@@ -131,6 +139,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log( "DOMContentLoaded..." );
 });
-
 
 console.log( "init: simple-logging-page.js" );
