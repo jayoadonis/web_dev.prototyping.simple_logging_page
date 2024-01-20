@@ -31,7 +31,8 @@ class User extends Objectx {
         //REM: And we already check if it is an instance of the said Class in
         //REM: this case the class named 'User'
         // $user = (User)$obj; 
-        return $this->firstName === $obj->getFirstName();
+        return strtolower( $this->firstName ) === strtolower( $obj->getFirstName() );
+        //REM: (Note); we can remove strtolower impl here, if we have another field such as the 'id'
     }
 
     /**
@@ -40,14 +41,19 @@ class User extends Objectx {
      */
     public function hashCode(): int {
         $result = 0;
+        //REM: TODO-HERE; Do we want to always have a mono-case( lowercase or uppercase ) for the String?
         $result = $result + 31 * parent::hashStr( $this->firstName?? 0xF0C ); //REM: -_-
         return $result & 0xFFFF_FFFF;
     }
 
     public function setFirstName( ?String $firstName ): void {
-        if( !$firstName || empty( trim( $firstName ) ) )
+        $fn = null;
+        if( !$firstName || empty( $fn = trim( $firstName ) ) || 
+            $this->firstName !== null && strtolower( $this->firstName ) === strtolower( $fn )  
+        ) {
             return;
-        $this->firstName = $firstName;
+        }
+        $this->firstName = $fn;
     }
     
     public function getFirstName(): ?String {
@@ -58,10 +64,24 @@ class User extends Objectx {
 }
 
 $user = new User();
-$user->setFirstName( "Ok" );
-
 $user1 = new User();
-$user1->setFirstName( "Ok" );
+printf( "::: " . $user->toString() . "\n" );
+printf( "::: " . $user1->toString() . "\n" );
+printf( "::: " . $user->equals( $user ) . "\n" );
+printf( "::: " . $user1->equals( $user1 ) . "\n" );
+printf( "::: " . $user1->equals( $user ) . "\n" );
+
+$user->setFirstName( "Ok" );
+$user1->setFirstName( "OK" );
+printf( "::: " . $user->toString() . "\n" );
+printf( "::: " . $user1->toString() . "\n" );
+printf( "::: " . $user->equals( $user ) . "\n" );
+printf( "::: " . $user1->equals( $user1 ) . "\n" );
+printf( "::: " . $user1->equals( $user ) . "\n" );
+
+
+$user->setFirstName( "Ok" );
+$user1->setFirstName( "Oks" );
 printf( "::: " . $user->toString() . "\n" );
 printf( "::: " . $user1->toString() . "\n" );
 printf( "::: " . $user->equals( $user ) . "\n" );
