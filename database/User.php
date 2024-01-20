@@ -59,6 +59,15 @@ class User extends Objectx {
     public function getFirstName(): ?String {
         return $this->firstName;    
     }
+
+    /**
+     * 
+     * @inherit util\Objectx::toString()LString
+     * 
+     */
+    public function toString(): String {
+        return parent::toString() . "[ firstName='" . $this->firstName . "' ]"; 
+    }
     
     private ?String $firstName;
 }
@@ -71,8 +80,8 @@ printf( "::: " . $user->equals( $user ) . "\n" );
 printf( "::: " . $user1->equals( $user1 ) . "\n" );
 printf( "::: " . $user1->equals( $user ) . "\n" );
 
-$user->setFirstName( "Ok" );
-$user1->setFirstName( "OK" );
+$user->setFirstName( "Ok   " );
+$user1->setFirstName( "    OK   " );
 printf( "::: " . $user->toString() . "\n" );
 printf( "::: " . $user1->toString() . "\n" );
 printf( "::: " . $user->equals( $user ) . "\n" );
@@ -80,8 +89,8 @@ printf( "::: " . $user1->equals( $user1 ) . "\n" );
 printf( "::: " . $user1->equals( $user ) . "\n" );
 
 
-$user->setFirstName( "Ok" );
-$user1->setFirstName( "Oks" );
+$user->setFirstName( "Ok   " );
+$user1->setFirstName( "   Oks   " );
 printf( "::: " . $user->toString() . "\n" );
 printf( "::: " . $user1->toString() . "\n" );
 printf( "::: " . $user->equals( $user ) . "\n" );
