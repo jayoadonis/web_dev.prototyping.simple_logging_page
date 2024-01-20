@@ -70,6 +70,13 @@ class User extends Objectx {
     }
     
     private ?String $firstName;
+    private ?String $middleName;
+    private ?String $lastName;
+    private ?String $suffix;
+
+    private bool $isAdmin;
+    private String $userName;
+    private String $password;
 }
 
 $user = new User();

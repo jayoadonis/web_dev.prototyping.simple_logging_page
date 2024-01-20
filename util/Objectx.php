@@ -14,7 +14,7 @@ class Objectx {
         return $this->canonicalName . "@" . $this->hashCode();
     }
 
-    /** [Warning]: This defaulted only to check for address location equality.
+    /** [Warning]: This defaulted to verifying equality based on memory address-location only.
      * 
     */
     public function equals( Objectx $obj ): bool {
@@ -22,8 +22,8 @@ class Objectx {
     }
 
     public function hashCode(): int {
-        //REM: note; masking to 4 bytes
-        return 31 * self::hashStr( $this->canonicalName) + 
+        //REM: note; bit masking to 4 bytes
+        return 31 * self::hashStr( $this->canonicalName ) + 
             spl_object_hash( $this ) & 0xFFFF_FFFF ;
     }
 
@@ -42,7 +42,7 @@ class Objectx {
         return 31 * $x;
     }
 
-    protected String $canonicalName;
+    protected /*readonly*/ String $canonicalName;
 }
 
 // $obj = new Objectx();
