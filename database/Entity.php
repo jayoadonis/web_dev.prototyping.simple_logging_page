@@ -114,6 +114,8 @@ abstract class Entity extends Objectx {
 
     /**
      * 
+     * A deep equality check...
+     * 
      * @inherit util\Objectx::equals(LObjectx)Z
      * 
      */
