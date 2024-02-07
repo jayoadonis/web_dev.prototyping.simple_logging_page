@@ -3,16 +3,34 @@
 namespace database;
 
 require_once( "../util/Objectx.php" );
+require_once( "../util/Status.php" );
 
 use util\Objectx;
+use util\Status;
 
 class User extends Objectx {
     //REM: TODO-HERE...
     public function __construct( 
-        String $canonicalName = "database\User" 
+        String $firstName = Status::VALUE[ Status::NA ],
+        String $middleName = Status::VALUE[ Status::NA ],
+        String $canonicalName = "database\User"
     ) {
         parent::__construct( $canonicalName );
-        $this->firstName = null;
+
+        $this->id = date( 'Y' ) . "-" . sprintf( "%04d", ++self::$idCounter );
+
+        $this->init( 
+            $firstName,
+            $middleName
+        );
+    }
+
+    private function init( 
+        String $firstName,
+        String $middleName
+    ) {
+        $this->setFirstName( $firstName );
+        $this->setMiddleName( $middleName );
     }
 
     /**
@@ -42,22 +60,43 @@ class User extends Objectx {
     public function hashCode(): int {
         $result = 0;
         //REM: TODO-HERE; Do we want to always have a mono-case( lowercase or uppercase ) for the String?
+        $result = $result + 31 * parent::hashStr( $this->id?? 0xF0C ); //REM: -_-
         $result = $result + 31 * parent::hashStr( $this->firstName?? 0xF0C ); //REM: -_-
+        $result = $result + 31 * parent::hashStr( $this->middleName?? 0xF0C ); //REM: -_-
         return $result & 0xFFFF_FFFF;
+    }
+
+    public function getId(): ?String {
+        return $this->id;
     }
 
     public function setFirstName( ?String $firstName ): void {
         $fn = null;
         if( !$firstName || empty( $fn = trim( $firstName ) ) || 
-            $this->firstName !== null && strtolower( $this->firstName ) === strtolower( $fn )  
+            isset( $this->firstName ) && strtolower( $this->firstName ) === strtolower( $fn )  
         ) {
             return;
         }
         $this->firstName = $fn;
     }
     
+    
     public function getFirstName(): ?String {
         return $this->firstName;    
+    }
+    
+    public function setMiddleName( ?String $middleName ): void {
+        $mD= null;
+        if( !$middleName || empty( $mD = trim( $middleName ) ) ||
+                isset( $this->middleName ) && strtolower( $this->middleName ) === strtolower( $mD )
+        ) {
+            return;
+        }
+        $this->middleName = $mD;
+    }
+
+    public function getMiddleName(): ?String {
+        return $this->middleName;
     }
 
     /**
@@ -66,9 +105,16 @@ class User extends Objectx {
      * 
      */
     public function toString(): String {
-        return parent::toString() . "[ firstName='" . $this->firstName . "' ]"; 
+        // return parent::toString() . "[ firstName='" . $this->firstName . 
+        //     "', middleName='" . $this->middleName . "' ]"; 
+
+        return sprintf( "%s[ id='%s', firstName='%s', middleName='%s' ]",
+            parent::toString(), $this->id, $this->firstName, $this->middleName
+        );
     }
     
+    private ?String $id;
+    private static int $idCounter = 0;
     private ?String $firstName;
     private ?String $middleName;
     private ?String $lastName;
@@ -86,6 +132,10 @@ printf( "::: " . $user1->toString() . "\n" );
 printf( "::: " . $user->equals( $user ) . "\n" );
 printf( "::: " . $user1->equals( $user1 ) . "\n" );
 printf( "::: " . $user1->equals( $user ) . "\n" );
+printf( "::: " . $user->toString() . "\n" );
+printf( "::: " . $user1->toString() . "\n" );
+
+echo "====\n";
 
 $user->setFirstName( "Ok   " );
 $user1->setFirstName( "    OK   " );
@@ -96,6 +146,7 @@ printf( "::: " . $user1->equals( $user1 ) . "\n" );
 printf( "::: " . $user1->equals( $user ) . "\n" );
 
 
+echo "====\n";
 $user->setFirstName( "Ok   " );
 $user1->setFirstName( "   Oks   " );
 printf( "::: " . $user->toString() . "\n" );
@@ -104,6 +155,8 @@ printf( "::: " . $user->equals( $user ) . "\n" );
 printf( "::: " . $user1->equals( $user1 ) . "\n" );
 printf( "::: " . $user1->equals( $user ) . "\n" );
 
+
+echo "====\n";
 $obj = new Objectx();
 $obj1 = new Objectx();
 printf( "::: " . $obj->toString() . "\n" );
