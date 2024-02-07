@@ -47,12 +47,12 @@ class TestEntity extends Entity {
     private int $uniqueProp;
 }
 
-$testEntity = new TestEntity( "te-001" );
-$testEntity->setFirstName( "T.E." );
-printf( "::: " . $testEntity->toString() . "\n" );
+// $testEntity = new TestEntity( "te-001" );
+// $testEntity->setFirstName( "T.E." );
+// printf( "::: " . $testEntity->toString() . "\n" );
 
-$testEntity1 = new TestEntity( "te-001" );
-$testEntity1->setFirstName( "T.E." );
-printf( "::: " . $testEntity1->toString() . "\n" );
+// $testEntity1 = new TestEntity( "te-001" );
+// $testEntity1->setFirstName( "T.E." );
+// printf( "::: " . $testEntity1->toString() . "\n" );
 
-printf( "::: " . $testEntity1->equals( $testEntity ) . "\n" );
+// printf( "::: " . $testEntity1->equals( $testEntity ) . "\n" );

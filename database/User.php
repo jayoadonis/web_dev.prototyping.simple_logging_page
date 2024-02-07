@@ -125,42 +125,42 @@ class User extends Objectx {
     private String $password;
 }
 
-$user = new User();
-$user1 = new User();
-printf( "::: " . $user->toString() . "\n" );
-printf( "::: " . $user1->toString() . "\n" );
-printf( "::: " . $user->equals( $user ) . "\n" );
-printf( "::: " . $user1->equals( $user1 ) . "\n" );
-printf( "::: " . $user1->equals( $user ) . "\n" );
-printf( "::: " . $user->toString() . "\n" );
-printf( "::: " . $user1->toString() . "\n" );
+// $user = new User();
+// $user1 = new User();
+// printf( "::: " . $user->toString() . "\n" );
+// printf( "::: " . $user1->toString() . "\n" );
+// printf( "::: " . $user->equals( $user ) . "\n" );
+// printf( "::: " . $user1->equals( $user1 ) . "\n" );
+// printf( "::: " . $user1->equals( $user ) . "\n" );
+// printf( "::: " . $user->toString() . "\n" );
+// printf( "::: " . $user1->toString() . "\n" );
 
-echo "====\n";
+// echo "====\n";
 
-$user->setFirstName( "Ok   " );
-$user1->setFirstName( "    OK   " );
-printf( "::: " . $user->toString() . "\n" );
-printf( "::: " . $user1->toString() . "\n" );
-printf( "::: " . $user->equals( $user ) . "\n" );
-printf( "::: " . $user1->equals( $user1 ) . "\n" );
-printf( "::: " . $user1->equals( $user ) . "\n" );
-
-
-echo "====\n";
-$user->setFirstName( "Ok   " );
-$user1->setFirstName( "   Oks   " );
-printf( "::: " . $user->toString() . "\n" );
-printf( "::: " . $user1->toString() . "\n" );
-printf( "::: " . $user->equals( $user ) . "\n" );
-printf( "::: " . $user1->equals( $user1 ) . "\n" );
-printf( "::: " . $user1->equals( $user ) . "\n" );
+// $user->setFirstName( "Ok   " );
+// $user1->setFirstName( "    OK   " );
+// printf( "::: " . $user->toString() . "\n" );
+// printf( "::: " . $user1->toString() . "\n" );
+// printf( "::: " . $user->equals( $user ) . "\n" );
+// printf( "::: " . $user1->equals( $user1 ) . "\n" );
+// printf( "::: " . $user1->equals( $user ) . "\n" );
 
 
-echo "====\n";
-$obj = new Objectx();
-$obj1 = new Objectx();
-printf( "::: " . $obj->toString() . "\n" );
-printf( "::: " . $obj1->toString() . "\n" );
-printf( "::: " . $obj->equals( $obj ) . "\n" );
-printf( "::: " . $obj1->equals( $obj1 ) . "\n" );
-printf( "::: " . $obj1->equals( $obj ) . "\n" );
+// echo "====\n";
+// $user->setFirstName( "Ok   " );
+// $user1->setFirstName( "   Oks   " );
+// printf( "::: " . $user->toString() . "\n" );
+// printf( "::: " . $user1->toString() . "\n" );
+// printf( "::: " . $user->equals( $user ) . "\n" );
+// printf( "::: " . $user1->equals( $user1 ) . "\n" );
+// printf( "::: " . $user1->equals( $user ) . "\n" );
+
+
+// echo "====\n";
+// $obj = new Objectx();
+// $obj1 = new Objectx();
+// printf( "::: " . $obj->toString() . "\n" );
+// printf( "::: " . $obj1->toString() . "\n" );
+// printf( "::: " . $obj->equals( $obj ) . "\n" );
+// printf( "::: " . $obj1->equals( $obj1 ) . "\n" );
+// printf( "::: " . $obj1->equals( $obj ) . "\n" );
